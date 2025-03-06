@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-// Add item to cart (buyer only)
+
 router.post(
   '/',
   authMiddleware,
@@ -19,7 +19,7 @@ router.post(
   addToCart
 );
 
-// Update cart item quantity (buyer only)
+
 router.put(
   '/item',
   authMiddleware,
@@ -27,7 +27,7 @@ router.put(
   updateCartItem
 );
 
-// Remove item from cart (buyer only)
+
 router.delete(
   '/item/:productId',
   authMiddleware,
@@ -35,7 +35,6 @@ router.delete(
   removeFromCart
 );
 
-// Get cart details (buyer only)
 router.get(
   '/',
   authMiddleware,
@@ -43,7 +42,7 @@ router.get(
   getCart
 );
 
-// Clear cart (buyer only)
+
 router.delete(
   '/',
   authMiddleware,

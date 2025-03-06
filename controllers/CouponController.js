@@ -4,26 +4,26 @@ import mongoose from 'mongoose';
 export const createCoupon = async (req, res) => {
   try {
     const { code, discount, expirationDate } = req.body;
-    const sellerId = req.user._id; // Get sellerId from JWT
+    const sellerId = req.user._id; 
 
-    // Validate required fields (sellerId is now from JWT, so no need to check it here)
+    
     if (!code || !discount || !expirationDate) {
       return res.status(400).json({ message: 'Code, discount, and expiration date are required' });
     }
 
-    // Validate discount
+  
     if (typeof discount !== 'number' || discount < 0 || discount > 100) {
       return res.status(400).json({ message: 'Discount must be a number between 0 and 100' });
     }
 
-    // Validate expiration date
+    
     const parsedDate = new Date(expirationDate);
     if (isNaN(parsedDate.getTime())) {
       return res.status(400).json({ message: 'Invalid expiration date' });
     }
 
     const newCoupon = new Coupon({
-      sellerId, // Automatically set from req.user._id
+      sellerId, 
       code,
       discount,
       expirationDate: parsedDate,

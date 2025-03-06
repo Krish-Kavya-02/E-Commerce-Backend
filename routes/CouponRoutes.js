@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-// Create a coupon (seller only)
+
 router.post(
   '/',
   authMiddleware,
@@ -19,13 +19,12 @@ router.post(
   createCoupon
 );
 
-// Get all active coupons (public)
+
 router.get(
   '/active',
   getActiveCoupons
 );
 
-// Get all coupons (admin only)
 router.get(
   '/',
   authMiddleware,
@@ -33,14 +32,14 @@ router.get(
   getAllCoupons
 );
 
-// Get coupons by seller (seller or admin)
+
 router.get(
   '/seller/:sellerId',
   authMiddleware,
   getSellerCoupons
 );
 
-// Verify a coupon code (public)
+
 router.get(
   '/verify/:code',
   authMiddleware,

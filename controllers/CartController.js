@@ -4,8 +4,7 @@ import User from '../models/User.js';
 import axios from 'axios';
 import mongoose from 'mongoose';
 
-// Helper function to calculate total price
-const calculateTotalPrice = async (items) => {
+const calculateTotalPrice = async (items) => { 
   const populatedItems = await Promise.all(
     items.map(async (item) => {
       const product = await Product.findById(item.productId);
@@ -26,19 +25,19 @@ const sendWebhook = async (eventData) => {
   
     try {
       await axios.post(process.env.WEBHOOK_URL, eventData, {
-        timeout: 5000, // 5-second timeout to avoid hanging
+        timeout: 5000,
         headers: { 'Content-Type': 'application/json' },
       });
       console.log(`Webhook sent: ${eventData.event}`);
     } catch (error) {
       console.error(`Webhook error for ${eventData.event}:`, error.message);
-      // Non-blocking: Errors are logged but don’t affect the response
+    
     }
   };
 
 export const addToCart = async (req, res) => {
     try {
-      const userId = req.user._id; // From JWT middleware
+      const userId = req.user._id; 
   
       const { productId, quantity } = req.body;
   

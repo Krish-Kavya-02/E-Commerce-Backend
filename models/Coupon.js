@@ -29,7 +29,7 @@ const couponSchema = new Schema({
   },
 });
 
-// Ensure coupon is inactive if expired
+
 couponSchema.pre('save', function (next) {
   if (this.expirationDate < Date.now()) {
     this.isActive = false;
